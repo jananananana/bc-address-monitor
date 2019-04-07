@@ -16,9 +16,13 @@ class App extends Component {
       sock.send({"op":"addr_sub", "addr":"1dice8EMZmqKvrGE4Qc9bUFf9PX3xaYDp"});
     };
 
+    let self = this;
+
     sock.onmessage = function(e) {
       console.log('message', e.data);
-      sock.close();
+      //sock.close();
+      // messages from server, store in state
+      self.setState( { messages: [...self.state.messages, e.data]});
     };
 
     sock.onclose = function() {
@@ -35,21 +39,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header>
         </header>
-        <Ledger />
+        <Ledger {... this.state} />
       </div>
     );
   }
