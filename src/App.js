@@ -8,11 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props);
-
     // Create a new socket connection with relative URL
-    let bta = '1dice8EMZmqKvrGE4Qc9bUFf9PX3xaYDp',
-      sock = new WebSocket('wss://ws.blockchain.info/inv');
+    let sock = new WebSocket('wss://ws.blockchain.info/inv');
 
     sock.onopen = function() {
       console.log('open');
