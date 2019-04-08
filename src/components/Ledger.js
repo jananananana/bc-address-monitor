@@ -8,9 +8,11 @@ class Ledger extends Component {
   }
 
   handleFormSubmit(e) {
+    // sample address 1dice8EMZmqKvrGE4Qc9bUFf9PX3xaYDp
     e.preventDefault();
+    debugger;
     let text = this.refs.addressInput.value;
-    this.props.actions.send(text);
+    this.props.actions.send(JSON.stringify({"op":"addr_sub", "addr":"#{text}"}));
   } 
 
   render() {
@@ -25,7 +27,7 @@ class Ledger extends Component {
         <form action="https://blockchain.info/rawaddr/$bitcoin_address"></form>
         <form onSubmit={this.handleFormSubmit}>
           <input ref="addressInput" id="address-input" type="text"/>
-          <label for="address-input"></label>
+          <label htmlFor="address-input">Bitcoin Address</label>
           <button type="submit">Look Up Address</button>
         </form>
         <ul>
