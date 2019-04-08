@@ -1,3 +1,11 @@
+## Notes/ TODO
+1. Validation to ensure valid wallet address in Ledger.js
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

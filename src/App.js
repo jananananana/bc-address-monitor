@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import Ledger from './components/Ledger';
+import ParseMessage from "./services/ParseMessage.js";
 
 class App extends Component {
   constructor(props) {
@@ -22,8 +23,9 @@ class App extends Component {
     sock.onmessage = function(e) {
       console.log('message', e.data);
       // messages from server, store in state
-      let parsedE = JSON.parse(e.data);
-      self.setState( { messages: [...self.state.messages, parsedE]});
+      let transactions = ParseMessage.extractTransactionInfo(e.data);
+
+      self.setState( { messages: [...self.state.messages, transactions]});
 
 
     };

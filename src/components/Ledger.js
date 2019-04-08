@@ -10,8 +10,8 @@ class Ledger extends Component {
   handleFormSubmit(e) {
     // sample address 1dice8EMZmqKvrGE4Qc9bUFf9PX3xaYDp
     e.preventDefault();
-    debugger;
     let text = this.refs.addressInput.value;
+    // TODO add address validation
     this.props.actions.send(JSON.stringify({"op":"addr_sub", "addr":"#{text}"}));
   } 
 
