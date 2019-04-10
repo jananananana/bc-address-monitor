@@ -1,6 +1,6 @@
 ## Notes/ TODO
 1. Validation to ensure valid wallet address in Ledger.js
-
+2. To access go to: https://jananananana.github.io/bc-address-monitor/index.html
 
 
 
