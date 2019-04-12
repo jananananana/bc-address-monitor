@@ -10,36 +10,31 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    // Save the messages from the server in messages, and then used to render
+    this.state = { messages: [] };
+  }
+  componentDidMount() {
     // Create a new socket connection with relative URL
-    let sock = new WebSocket('wss://ws.blockchain.info/inv');
+    const sock = new WebSocket('wss://ws.blockchain.info/inv');
 
-    sock.onopen = function() {
+    sock.onopen = () => {
       console.log('open');
+      this.setState({ actions: sock });
     };
 
-    let self = this;
-
-    sock.onmessage = function(e) {
+    sock.onmessage = (e) => {
       console.log('message', e.data);
       // messages from server, store in state
-      let transactions = ParseMessage.extractTransactionInfo(e.data);
+      const transactions = ParseMessage.extractTransactionInfo(e.data);
 
-      self.setState( { messages: [...self.state.messages, transactions]});
-
-
+      this.setState({ messages: [...this.state.messages, transactions] });
     };
 
-    sock.onclose = function() {
-      console.log('close');
-    };
+    sock.onclose = () => console.log('close');
 
-    // Save the messages from the server in messages, and then used to render
-    this.state = {
-      actions: sock,
-      messages: []
-    }
+    sock.onerror = e => console.error(e.message);
+
   }
-
   render() {
     return (
       <div className="App">
