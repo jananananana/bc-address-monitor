@@ -13,6 +13,8 @@ class App extends Component {
     // Save the messages from the server in messages, and then used to render
     this.state = { messages: [] };
   }
+
+  // Move this into ledger
   componentDidMount() {
     // Create a new socket connection with relative URL
     const sock = new WebSocket('wss://ws.blockchain.info/inv');
@@ -35,6 +37,7 @@ class App extends Component {
     sock.onerror = e => console.error(e.message);
 
   }
+
   render() {
     return (
       <div className="App">
